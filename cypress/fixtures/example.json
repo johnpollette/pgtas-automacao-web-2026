@@ -1,0 +1,12 @@
+{
+  "name": "Using fixtures to represent data",
+  "email": "hello@cypress.io",
+  "body": "Fixtures are a great way to mock data for responses to routes"
+}
+
+/*
+pode guardar dados para o teste
+na pagina que for usar o fixture tem que colocar o require do arquivo fixture, por exemplo: const data = require('../fixtures/example.json');
+Em alguns projetos a pasta fixtures é usada para guardar dados de teste, como por exemplo dados de login, dados de cadastro, etc. E esses dados podem ser usados nos testes para preencher formulários, validar respostas, etc.
+Em alguns projetos a pasta fixtures e chamada de "test data" ou "mock data", e pode conter arquivos json, csv, txt, etc. com os dados de teste.
+*/
