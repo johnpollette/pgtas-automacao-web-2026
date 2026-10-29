@@ -1,3 +1,11 @@
+/*
+implementar exercicios 1.2.3.4.5.8.9.10.15.16
+projeto com github actions
+atencao as bibliotecas
+modularizacao do codigo ou aplicacao de padrao
+boas praticas de desenvolvimento - retry, url base, page object, fixtures, data driven, etc
+relatorio mockawesome integrado html ou outro 
+*/
 
 describe('Projeto deAutomação de Conclusão de Disciplina web Pgats 2026', () => {
     const timestamp = Date.now();
@@ -207,10 +215,11 @@ cy.contains('You have been successfully subscribed!').should('be.visible');
         cy.get('#search_product').type('Blue Top');
         cy.get('#submit_search').click();
         //8. Add products to cart
+        /*
         //Tentei fazer o realhover mais travei no click - entao mudei para o clique no produto e add o produto da pagina dele diretamente.
         //cy.get('.btn.btn-default.add-to-cart').realHover().click();
           //cy.contains('button', 'Add to Cart').should('be.visible').click();
-
+*/
           //clicar no produto
           cy.get('a[href="/product_details/1"]').click();
           //clicar no add to cart button
@@ -255,7 +264,8 @@ cy.contains('You have been successfully subscribed!').should('be.visible');
     cy.get('[data-qa=continue-button]').click();
 
     // click on cart button
-    c
+    
+   cy.get
 
 
         //12. Verify Address Details and Review Your Order
