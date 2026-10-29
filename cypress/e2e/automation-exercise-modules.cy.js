@@ -2,7 +2,7 @@ import {index} from '../modules/cadastro/index'
 const cadastro = require('../modules/cadastro/index')
 
 describe('Automation Exercise', () => {
-  it.only('Cadastrar um novo usuario com sucesso', () => {
+  it('Cadastrar um novo usuario com sucesso', () => {
     cy.visit('https://automationexercise.com/login');
     
         cadastro.iniciarCadastro('John pgats', `johnpgats${Date.now()}@example.com`);
