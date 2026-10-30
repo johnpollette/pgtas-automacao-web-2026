@@ -26,4 +26,4 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           # Por padrão, ele já vai rodar o comando "cypress run" automaticamente.
-          command: npx cypress run --spec ".../cypress/e2e/pgats-trabalho-conclusao-aut-web.cy.js"
+        command: npx cypress run --spec "cypress/e2e/pgats-trabalho-conclusao-aut-web.cy.js"
