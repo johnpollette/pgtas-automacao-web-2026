@@ -1,0 +1,30 @@
+name: Testes End-to-End Trabalho conclusao do curso automacao web PGATS 2026
+
+#  Define quando o teste vai rodar automaticamente
+on:
+  push:
+    branches: ["main", "master"] # Roda sempre que houver um push na branch principal
+  pull_request:
+    branches: ["main", "master"] # Roda sempre que abrirem um Pull Request para a branch principal
+  workflow_dispatch: # Permite que você clique em um botão no GitHub para rodar manualmente
+
+  # Configurando para rodar os testes a cada 1 hora
+  schedule:
+    - cron: "0 * * * *"
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest # Sistema operacional da máquina virtual do GitHub
+
+    steps:
+      # Passo 1: Copia o código do seu repositório para dentro da máquina virtual
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      # Passo 2: Instala dependências e roda os testes usando a Action oficial do Cypress
+      - name: Executar Testes do Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          # Se os seus testes precisarem de gravação ou comandos customizados, você adiciona aqui.
+          # Por padrão, ele já vai rodar o comando "cypress run" automaticamente.
+          command: npx cypress run --spec ".\cypress\e2e\pgtas-trabalho-conclusao-aut-web.cy.js"

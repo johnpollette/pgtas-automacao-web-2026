@@ -14,6 +14,10 @@ module.exports = defineConfig({
   reporter: 'cypress-mochawesome-reporter',
   e2e: {
     baseUrl: 'https://www.automationexercise.com',
+    retries: {
+      runMode: 2,    // Quantidade de retries rodando via terminal (npx cypress run)
+      openMode: 0,   // Quantidade de retries rodando no modo interativo (npx cypress open)
+    },
     watchForFileChanges: true,
     viewportWidth: 1280,
     viewportHeight: 720,
