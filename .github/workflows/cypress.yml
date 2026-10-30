@@ -21,10 +21,18 @@ jobs:
       - name: Checkout do Repositório
         uses: actions/checkout@v4
 
+        - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
       # Passo 2: Instala dependências e roda os testes usando a Action oficial do Cypress
       - name: Executar Testes do Cypress
         uses: cypress-io/github-action@v6
         with:
-          # Se os seus testes precisarem de gravação ou comandos customizados, você adiciona aqui.
           # Por padrão, ele já vai rodar o comando "cypress run" automaticamente.
-          command: npx cypress run --spec "cypress/e2e/pgats-trabalho-conclusao-aut-web.cy.js"
+          command: npx cypress run --spec ".../cypress/e2e/pgats-trabalho-conclusao-aut-web.cy.js"
