@@ -201,7 +201,7 @@ cy.contains('You have been successfully subscribed!').should('be.visible');
 
     })
 
-    it.only('Exercício 15 - Criar ordem e registrar usuario antes do checkout', () => {
+    it('Exercício 15 - Criar ordem e registrar usuario antes do checkout', () => {
             const timestamp = Date.now();
 
         //1. Launch browser
@@ -264,51 +264,115 @@ cy.contains('You have been successfully subscribed!').should('be.visible');
     cy.get('[data-qa=continue-button]').click();
 
     // click on cart button
-    
-   cy.get
+    cy.xpath('//*[@id="header"]/div/div/div/div[2]/div/ul/li[3]/a').click();
+        // click on proceed to checkout
+        cy.get('.col-sm-6 > a').click();
 
 
         //12. Verify Address Details and Review Your Order
+        cy.get('#address_delivery').contains('.address_address1', '123 Main St');
         //13. Enter description in comment text area and click 'Place Order'
+        cy.get('.form-control').type('Texto para teste do campo comments');
+
+        // clicar no btn place order
+        cy.get('a[href="/payment"]').click();
         //14. Enter payment details: Name on Card, Card Number, CVC, Expiration date
+        
+        cy.get('[data-qa=name-on-card]').type('John Doe');
+        cy.get('[data-qa=card-number]').type('1234567890123456');
+        cy.get('[data-qa=cvc]').type('111');
+        cy.get('[data-qa=expiry-month').type('12');
+        cy.get('[data-qa=expiry-year').type('2050');
+        cy.get('[data-qa=pay-button').click();
+        cy.get('[data-qa="order-placed"] b').contains('Order Placed!')
+        cy.get('[data-qa="continue-button"]').click();
+        cy.get('#slider-carousel').should('be.visible');
 
-        //4. Click 'Signup / Login' button
-        //5. Fill all details in Signup and create account
-
-        //6. Verify 'ACCOUNT CREATED!' and click 'Continue' button
-        //7. Verify ' Logged in as username' at top
         
         
         
         
         
         
-        
-        //15. Click 'Pay and Confirm Order' button
-        //16. Verify success message 'Your order has been placed successfully!'
         
 
     })
 
-    it('Exercício 16 - Criar ordem e fazer login do usuario antes do checkout', () => {
+    it.only('Exercício 16 - Criar ordem e fazer login do usuario antes do checkout', () => {
+        //1. Launch browser
+        //2. Navigate to url 'http://automationexercise.com'
+        cy.visit('/');
+        //3. Verify that home page is visible successfully
+        cy.get('#slider-carousel').should('be.visible');
+        //4. Click on 'Products' button
+        cy.get('a[href="/products"]').click();
+        //6. Enter product name in search input and click search button
+        cy.get('#search_product').type('Blue Top');
+        cy.get('#submit_search').click();
+        //8. Add products to cart
         /*
-        1. Launch browser
-2. Navigate to url 'http://automationexercise.com'
-3. Verify that home page is visible successfully
-4. Click 'Signup / Login' button
-5. Fill email, password and click 'Login' button
-6. Verify 'Logged in as username' at top
-7. Add products to cart
-8. Click 'Cart' button
-9. Verify that cart page is displayed
-10. Click Proceed To Checkout
-11. Verify Address Details and Review Your Order
-12. Enter description in comment text area and click 'Place Order'
-13. Enter payment details: Name on Card, Card Number, CVC, Expiration date
-14. Click 'Pay and Confirm Order' button
-15. Verify success message 'Your order has been placed successfully!'
-16. Click 'Delete Account' button
-17. Verify 'ACCOUNT DELETED!' and click 'Continue' button*/
+        //Tentei fazer o realhover mais travei no click - entao mudei para o clique no produto e add o produto da pagina dele diretamente.
+        //cy.get('.btn.btn-default.add-to-cart').realHover().click();
+          //cy.contains('button', 'Add to Cart').should('be.visible').click();
+*/
+          //clicar no produto
+          cy.get('a[href="/product_details/1"]').click();
+          //clicar no add to cart button
+          cy.xpath('/html/body/section/div/div/div[2]/div[2]/div[2]/div/span/button').click();
+
+
+        //9. Click 'view Cart' button
+        cy.xpath('//*[@id="cartModal"]/div/div/div[2]/p[2]/a/u').click();
+        //10. Verify that cart page is displayed
+        cy.get('.active').should('have.text', 'Shopping Cart');
+        //11. Click Proceed To Checkout
+        cy.get('.col-sm-6 > a').click();
+        //12 click on register/login button in checkout page
+        cy.xpath('//*[@id="checkoutModal"]/div/div/div[2]/p[2]/a/u').click();
+        // enter login e senha.
+        cy.get('[data-qa=login-email]').type('johnpgats001@example.com');
+      cy.get('[data-qa=login-password]').type('123456');
+      //7. Click 'login' button
+        cy.get('[data-qa=login-button]').click();
+      //8. Verify that 'Logged in as username' is visible
+      cy.get('#header').contains('Logged in as').should('be.visible');
+      //9. Click 'view Cart' button
+      //cy.get('a[href="/view_cart"]').click();
+        cy.xpath('//*[@id="header"]/div/div/div/div[2]/div/ul/li[3]/a').click();
+        //10. Verify that cart page is displayed
+        cy.get('.active').should('have.text', 'Shopping Cart');
+        //11. Click Proceed To Checkout
+        cy.get('.col-sm-6 > a').click();
+        //12. Verify Address Details and Review Your Order
+        cy.get('#address_delivery').contains('.address_address1', '123 Main St');
+        //13. Enter description in comment text area and click 'Place Order'
+        cy.get('.form-control').type('Texto para teste do campo comments');
+
+        // clicar no btn place order
+        cy.get('a[href="/payment"]').click();
+        //14. Enter payment details: Name on Card, Card Number, CVC, Expiration date
+        
+        cy.get('[data-qa=name-on-card]').type('John Doe');
+        cy.get('[data-qa=card-number]').type('1234567890123456');
+        cy.get('[data-qa=cvc]').type('111');
+        cy.get('[data-qa=expiry-month').type('12');
+        cy.get('[data-qa=expiry-year').type('2050');
+        cy.get('[data-qa=pay-button').click();
+        cy.get('[data-qa="order-placed"] b').contains('Order Placed!')
+        cy.get('[data-qa="continue-button"]').click();
+        cy.get('#slider-carousel').should('be.visible');
+
+
+//9. Verify that cart page is displayed
+//10. Click Proceed To Checkout
+//11. Verify Address Details and Review Your Order
+//12. Enter description in comment text area and click 'Place Order'
+//13. Enter payment details: Name on Card, Card Number, CVC, Expiration date
+//14. Click 'Pay and Confirm Order' button
+//15. Verify success message 'Your order has been placed successfully!'
+//16. Click 'Delete Account' button
+//17. Verify 'ACCOUNT DELETED!' and click 'Continue' button*/
+
     })
 
 })
