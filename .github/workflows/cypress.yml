@@ -6,7 +6,7 @@ on:
     branches: ["main", "master"] # Roda sempre que houver um push na branch principal
   pull_request:
     branches: ["main", "master"] # Roda sempre que abrirem um Pull Request para a branch principal
-  workflow_dispatch: # Permite que você clique em um botão no GitHub para rodar manualmente
+  workflow_dispatch: 
 
   # Configurando para rodar os testes a cada 1 hora
   schedule:
@@ -25,5 +25,12 @@ jobs:
       - name: Executar Testes do Cypress
         uses: cypress-io/github-action@v6
         with:
-          # Por padrão, ele já vai rodar o comando "cypress run" automaticamente.
           command: npx cypress run --spec cypress/e2e/pgats-trabalho-conclusao-aut-web.cy.js
+      # Passo 3: Salva a pasta do Mochawesome para voce poder baixar depois
+      - name: Salvar Relatorio Mochawesome
+        if: always() # Garante que o relatorio sera salvo mesmo se o teste falhar
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-mochawesome
+          path: cypress/reports # Se você usa o mochawesome padrão, mude para mochawesome-report
+          retention-days: 7    
