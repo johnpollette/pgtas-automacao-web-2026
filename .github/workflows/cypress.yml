@@ -27,4 +27,4 @@ jobs:
         with:
           # Se os seus testes precisarem de gravação ou comandos customizados, você adiciona aqui.
           # Por padrão, ele já vai rodar o comando "cypress run" automaticamente.
-          command: npx cypress run --spec ".\cypress\e2e\pgtas-trabalho-conclusao-aut-web.cy.js"
+          command: npx cypress run --spec "cypress/e2e/pgtas-trabalho-conclusao-aut-web.cy.js"
