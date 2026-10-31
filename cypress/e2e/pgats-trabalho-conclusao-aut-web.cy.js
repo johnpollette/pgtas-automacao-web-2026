@@ -1,6 +1,7 @@
 import { pagamento } from "../../pages/pagamento";
 import { cadastro } from "../../pages/cadastro";
 import { homePage } from "../../pages/homePage";
+import { signInUp } from "../../pages/signInUp";
 const pagamentoCartao = require("../../pages/pagamento");
 const preencherCadastroNovo = require("../../pages/cadastro");
 const preencherSubscribe = require("../../pages/homePage");
@@ -8,6 +9,7 @@ const logandoUsuario = require("../../pages/homePage");
 const clicarLoginPage = require("../../pages/homePage");
 const deslogarUsuario = require("../../pages/homePage");
 const usuarioIncorreto = require("../../pages/homePage");
+const telaLogin = require("../../pages/signInUp");
 
 /*
 implementar exercicios 1.2.3.4.5.8.9.10.15.16
@@ -28,7 +30,7 @@ describe("Projeto deAutomação de Conclusão de Disciplina web Pgats 2026", () 
     cy.get("input[data-qa=signup-name]").type("John pgats");
     //cy.get("input[data-qa=signup-email]").type("johnpgats001@example.com");
     cy.get("input[data-qa=signup-email]").type(
-     `johnpgats${timestamp}@example.com`,
+      `johnpgats${timestamp}@example.com`,
     );
     cy.get("button[data-qa=signup-button]").click();
 
@@ -74,27 +76,32 @@ describe("Projeto deAutomação de Conclusão de Disciplina web Pgats 2026", () 
     deslogarUsuario.logoutUsuario();
   });
 
+  //ok
   it("Exercício 5 - Cadastrar novo usuario com email ja cadastrado no sistema", () => {
     cy.visit("/");
     //3. Verify that home page is visible successfully
     cy.get("#slider-carousel").should("be.visible");
+
     //4. Click on 'Signup / Login' button
-    cy.get("a[href*=login]").click();
     //5. Verify 'New User Signup!' is visible
-    cy.get(".signup-form h2").should("have.text", "New User Signup!");
+    clicarLoginPage.navegarLoginPage();
     //6. Enter name and already registered email address
-    cy.get("input[data-qa=signup-name]").type("John pgats");
-    cy.get("input[data-qa=signup-email]").type("johnpgats001@example.com");
+    telaLogin.preencherCampoSignUp("John pgats", "johnpgats001@example.com");
+
+    //logandoUsuario.logarUsuario("johnpgats001@example.com", "123456");
+ 
     //7. Click 'Signup' button
     cy.get("[data-qa=signup-button]").click();
     //8. Verify error 'Email Address already exist!' is visible
     cy.get(".signup-form p").should(
-      "have.text",
-      "Email Address already exist!",
+     "have.text",
+    "Email Address already exist!",
     );
   });
 
-  it("Exercício 8 - Verificar todos os produtos e pagina de detalhes de produtos", () => {
+
+
+  it.only("Exercício 8 - Verificar todos os produtos e pagina de detalhes de produtos", () => {
     //   1. Launch browser
     //2. Navigate to url 'http://automationexercise.com'
     cy.visit("/");

@@ -10,7 +10,7 @@ on:
 
   # Configurando para rodar os testes a cada 1 hora
   schedule:
-    - cron: "0 * * * *"
+    - cron: '24 */4 * * *'
 
 jobs:
   cypress-run:
