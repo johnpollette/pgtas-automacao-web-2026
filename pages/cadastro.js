@@ -15,6 +15,8 @@ function preencherDadosCadastroNew(){
     cy.get('[data-qa=mobile_number]').type('+1 1234567890');
 
     cy.get('[data-qa=create-account]').click();
+    
+
 }
 
 export default {

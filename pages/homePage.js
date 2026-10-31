@@ -32,6 +32,11 @@ function logarUsuarioIncorreto(email, senha) {
   );
 }
 
+function validarHomePage(){
+        cy.get("#slider-carousel").should("be.visible");
+
+}
+
 function navegarLoginPage() {
   //4. Click on 'Signup / Login' button
   cy.get("a[href*=login]").click();
@@ -52,4 +57,5 @@ export default {
   navegarLoginPage,
   logoutUsuario,
   logarUsuarioIncorreto,
+  validarHomePage,
 };
