@@ -1,23 +1,7 @@
-/*import { pagamento } from "../../pages/pagamento";
-import { cadastro } from "../../pages/cadastro";
-import { homePage } from "../../pages/homePage";
-import { signInUp } from "../../pages/signInUp";
-import { produtos } from "../../pages/produtos";
-import { carrinhoDeCompras } from "../../pages/carrinhoDeCompras";
-import { checkout } from "../../pages/checkout";
-const pagamentoCartao = require("../../pages/pagamento");
-const preencherCadastroNovo = require("../../pages/cadastro");
-const preencherSubscribe = require("../../pages/homePage");
-const homePage = require("../../pages/homePage");
-const homePage = require("../../pages/homePage");
-const homePage = require("../../pages/homePage");
-const homePage = require("../../pages/homePage");
-const signInUp = require("../../pages/signInUp");
-const produtos = require("../../pages/produtos");
-const carrinhoDeCompras = require("../../pages/carrinhoDeCompras");
-const checkout = require("../../pages/checkout");
-const validarHomePage = require("../../pages/homePage");
-*/
+/*
+Trabalho de conclusao da disciplina Automacao Web pgats 2026
+Autor: John Pollette
+Professor: Samuel Lucas*/
 
 import pagamento from "../../pages/pagamento";
 import cadastro from "../../pages/cadastro";
@@ -29,15 +13,6 @@ import checkout from "../../pages/checkout";
 // Agrupando tudo o que pertence à homePage em uma única linha
 import homePage from "../../pages/homePage";
 import carrinhoDeCompras from "../../pages/carrinhoCompras";
-
-/*
-implementar exercicios 1.2.3.4.5.8.9.10.15.16
-projeto com github actions
-atencao as bibliotecas
-modularizacao do codigo ou aplicacao de padrao
-boas praticas de desenvolvimento - retry, url base, page object, fixtures, data driven, etc
-relatorio mockawesome integrado html ou outro 
-*/
 
 describe("Projeto deAutomação de Conclusão de Disciplina web Pgats 2026", () => {
   const timestamp = Date.now();
@@ -76,10 +51,7 @@ describe("Projeto deAutomação de Conclusão de Disciplina web Pgats 2026", () 
     homePage.navegarLoginPage();
 
     // 6. Enter incorrect email address and password
-    homePage.logarhomePage(
-      "incorrect@example.com",
-      "wrongpassword",
-    );
+    homePage.logarhomePage("incorrect@example.com", "wrongpassword");
   });
 
   //ok
@@ -202,7 +174,7 @@ describe("Projeto deAutomação de Conclusão de Disciplina web Pgats 2026", () 
     homePage.validarHomePage();
   });
 
-  it.only("Exercício 16 - Criar ordem e fazer login do usuario antes do checkout", () => {
+  it("Exercício 16 - Criar ordem e fazer login do usuario antes do checkout", () => {
     //1. Launch browser
     //2. Navigate to url 'http://automationexercise.com'
     cy.visit("/");
