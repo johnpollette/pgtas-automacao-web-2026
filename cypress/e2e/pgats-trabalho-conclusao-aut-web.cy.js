@@ -1,4 +1,4 @@
-import { pagamento } from "../../pages/pagamento";
+/*import { pagamento } from "../../pages/pagamento";
 import { cadastro } from "../../pages/cadastro";
 import { homePage } from "../../pages/homePage";
 import { signInUp } from "../../pages/signInUp";
@@ -8,15 +8,27 @@ import { checkout } from "../../pages/checkout";
 const pagamentoCartao = require("../../pages/pagamento");
 const preencherCadastroNovo = require("../../pages/cadastro");
 const preencherSubscribe = require("../../pages/homePage");
-const logandoUsuario = require("../../pages/homePage");
-const clicarLoginPage = require("../../pages/homePage");
-const deslogarUsuario = require("../../pages/homePage");
-const usuarioIncorreto = require("../../pages/homePage");
-const telaLogin = require("../../pages/signInUp");
-const paginaProdutos = require("../../pages/produtos");
-const paginaCarrinho = require("../../pages/carrinhoDeCompras");
-const checkoutPage = require("../../pages/checkout");
+const homePage = require("../../pages/homePage");
+const homePage = require("../../pages/homePage");
+const homePage = require("../../pages/homePage");
+const homePage = require("../../pages/homePage");
+const signInUp = require("../../pages/signInUp");
+const produtos = require("../../pages/produtos");
+const carrinhoDeCompras = require("../../pages/carrinhoDeCompras");
+const checkout = require("../../pages/checkout");
 const validarHomePage = require("../../pages/homePage");
+*/
+
+import pagamento from "../../pages/pagamento";
+import cadastro from "../../pages/cadastro";
+import signInUp from "../../pages/signInUp";
+import produtos from "../../pages/produtos";
+import carrinhoCompras from "../../pages/carrinhoCompras";
+import checkout from "../../pages/checkout";
+
+// Agrupando tudo o que pertence à homePage em uma única linha
+import homePage from "../../pages/homePage";
+import carrinhoDeCompras from "../../pages/carrinhoCompras";
 
 /*
 implementar exercicios 1.2.3.4.5.8.9.10.15.16
@@ -34,24 +46,24 @@ describe("Projeto deAutomação de Conclusão de Disciplina web Pgats 2026", () 
     cy.visit("/");
     cy.get("a[href*=login]").click();
 
-    telaLogin.preencherCampoSignUp(
+    signInUp.preencherCampoSignUp(
       "John pgats",
       `johnpgats${timestamp}@example.com`,
     );
 
     cy.get("button[data-qa=signup-button]").click();
 
-    preencherCadastroNovo.preencherDadosCadastroNew();
+    cadastro.preencherDadosCadastroNew();
   });
 
   //ok
   it("Exercício 2 - Login usuario com email e senha corretos", () => {
     cy.visit("/");
-    validarHomePage.validarHomePage();
+    homePage.validarHomePage();
 
-    clicarLoginPage.navegarLoginPage();
+    homePage.navegarLoginPage();
 
-    logandoUsuario.logarUsuario("johnpgats001@example.com", "123456");
+    homePage.logarUsuario("johnpgats001@example.com", "123456");
   });
 
   //ok
@@ -59,12 +71,12 @@ describe("Projeto deAutomação de Conclusão de Disciplina web Pgats 2026", () 
     cy.visit("/");
 
     // Verify that home page is visible successfully
-    validarHomePage.validarHomePage();
+    homePage.validarHomePage();
 
-    clicarLoginPage.navegarLoginPage();
+    homePage.navegarLoginPage();
 
     // 6. Enter incorrect email address and password
-    usuarioIncorreto.logarUsuarioIncorreto(
+    homePage.logarhomePage(
       "incorrect@example.com",
       "wrongpassword",
     );
@@ -74,28 +86,28 @@ describe("Projeto deAutomação de Conclusão de Disciplina web Pgats 2026", () 
   it("Exercício 4 - Logar com usuario cadastrado e efetuar logout", () => {
     cy.visit("/");
     //3. Verify that home page is visible successfully
-    validarHomePage.validarHomePage();
+    homePage.validarHomePage();
 
-    clicarLoginPage.navegarLoginPage();
+    homePage.navegarLoginPage();
 
-    logandoUsuario.logarUsuario("johnpgats001@example.com", "123456");
+    homePage.logarUsuario("johnpgats001@example.com", "123456");
 
-    deslogarUsuario.logoutUsuario();
+    homePage.logoutUsuario();
   });
 
   //ok
   it("Exercício 5 - Cadastrar novo usuario com email ja cadastrado no sistema", () => {
     cy.visit("/");
     //3. Verify that home page is visible successfully
-    validarHomePage.validarHomePage();
+    homePage.validarHomePage();
 
     //4. Click on 'Signup / Login' button
     //5. Verify 'New User Signup!' is visible
-    clicarLoginPage.navegarLoginPage();
+    homePage.navegarLoginPage();
     //6. Enter name and already registered email address
-    telaLogin.preencherCampoSignUp("John pgats", "johnpgats001@example.com");
+    signInUp.preencherCampoSignUp("John pgats", "johnpgats001@example.com");
 
-    //logandoUsuario.logarUsuario("johnpgats001@example.com", "123456");
+    //homePage.logarUsuario("johnpgats001@example.com", "123456");
 
     //7. Click 'Signup' button
     cy.get("[data-qa=signup-button]").click();
@@ -114,13 +126,13 @@ describe("Projeto deAutomação de Conclusão de Disciplina web Pgats 2026", () 
     cy.visit("/");
 
     //3. Verify that home page is visible successfully
-    validarHomePage.validarHomePage();
+    homePage.validarHomePage();
 
     //Navegando para a pagina de produtos.
-    paginaProdutos.visitandoProductsPage();
+    produtos.visitandoProductsPage();
 
     //6. The products list is visible
-    paginaProdutos.validarCaracteristicasDoProduto();
+    produtos.validarCaracteristicasDoProduto();
   });
 
   //ok
@@ -129,20 +141,20 @@ describe("Projeto deAutomação de Conclusão de Disciplina web Pgats 2026", () 
     //2. Navigate to url 'http://automationexercise.com'
     cy.visit("/");
     //3. Verify that home page is visible successfully
-    validarHomePage.validarHomePage();
+    homePage.validarHomePage();
 
     //4. Click on 'Products' button e validando pagina.
-    paginaProdutos.visitandoProductsPage();
+    produtos.visitandoProductsPage();
 
-    paginaProdutos.procurarProduto("Blue Top");
+    produtos.procurarProduto("Blue Top");
   });
 
   //ok
   it("Exercício 10 - Verificar o subscricao na pagina inicial", () => {
     cy.visit("/");
     //3. Verify that home page is visible successfully
-    validarHomePage.validarHomePage();
-    preencherSubscribe.subscribe();
+    homePage.validarHomePage();
+    homePage.subscribe();
   });
 
   it("Exercício 15 - Criar ordem e registrar usuario antes do checkout", () => {
@@ -152,14 +164,14 @@ describe("Projeto deAutomação de Conclusão de Disciplina web Pgats 2026", () 
     //2. Navigate to url 'http://automationexercise.com'
     cy.visit("/");
     //3. Verify that home page is visible successfully
-    validarHomePage.validarHomePage();
+    homePage.validarHomePage();
 
     //4. Click on 'Products' button e validando pagina.
-    paginaProdutos.visitandoProductsPage();
+    produtos.visitandoProductsPage();
 
     //6. Enter product name in search input and click search button
 
-    paginaProdutos.procurarProduto("Blue Top");
+    produtos.procurarProduto("Blue Top");
 
     //8. Add products to cart
     /*
@@ -167,41 +179,41 @@ describe("Projeto deAutomação de Conclusão de Disciplina web Pgats 2026", () 
         //cy.get('.btn.btn-default.add-to-cart').realHover().click();
           //cy.contains('button', 'Add to Cart').should('be.visible').click();
 */
-    paginaProdutos.clicarEAdicionarProdutoAoCarrinho();
+    produtos.clicarEAdicionarProdutoAoCarrinho();
 
-    paginaCarrinho.visitarPaginaCarrinho();
+    carrinhoCompras.visitarcarrinhoDeCompras();
 
-    checkoutPage.checkoutUsuarioNovo();
+    checkout.checkoutUsuarioNovo();
 
     //15 fill all details in Signup and create account
 
-    preencherCadastroNovo.preencherDadosCadastroNew();
+    cadastro.preencherDadosCadastroNew();
 
     cy.get("[data-qa=continue-button]").click();
 
-    checkoutPage.acessarCheckoutPage();
+    checkout.acessarCheckoutPage();
 
-    checkoutPage.checarInfoEPlaceOrder();
+    checkout.checarInfoEPlaceOrder();
 
     //14. Enter payment details: Name on Card, Card Number, CVC, Expiration date
 
-    pagamentoCartao.preencherCartao();
+    pagamento.preencherCartao();
     //Validando que ao final da compra voltou para pagina inicial.
-    validarHomePage.validarHomePage();
+    homePage.validarHomePage();
   });
 
-  it("Exercício 16 - Criar ordem e fazer login do usuario antes do checkout", () => {
+  it.only("Exercício 16 - Criar ordem e fazer login do usuario antes do checkout", () => {
     //1. Launch browser
     //2. Navigate to url 'http://automationexercise.com'
     cy.visit("/");
     //3. Verify that home page is visible successfully
-    validarHomePage.validarHomePage();
+    homePage.validarHomePage();
 
     //4. Click on 'Products' button
-    paginaProdutos.visitandoProductsPage();
+    produtos.visitandoProductsPage();
 
     //6. Enter product name in search input and click search button
-    paginaProdutos.procurarProduto("Blue Top");
+    produtos.procurarProduto("Blue Top");
 
     //8. Add products to cart
     /*
@@ -211,18 +223,18 @@ describe("Projeto deAutomação de Conclusão de Disciplina web Pgats 2026", () 
 */
     //clicar no produto
     //clicar no add to cart button
-    paginaProdutos.clicarEAdicionarProdutoAoCarrinho();
+    produtos.clicarEAdicionarProdutoAoCarrinho();
 
     //9. Click 'view Cart' button
     //10. Verify that cart page is displayed
-    paginaCarrinho.visitarPaginaCarrinho();
+    carrinhoDeCompras.visitarcarrinhoDeCompras();
 
     //11. Click Proceed To Checkout
     //12 click on register/login button in checkout page
     // enter login e senha.
     //7. Click 'login' button
     //8. Verify that 'Logged in as username' is visible
-    checkoutPage.checkoutUsuarioCadastrado();
+    checkout.checkoutUsuarioCadastrado();
 
     //9. Click 'view Cart' button
     //cy.get('a[href="/view_cart"]').click();
@@ -236,10 +248,10 @@ describe("Projeto deAutomação de Conclusão de Disciplina web Pgats 2026", () 
     //12. Verify Address Details and Review Your Order
     //13. Enter description in comment text area and click 'Place Order'
     // clicar no btn place order
-    checkoutPage.checarInfoEPlaceOrder();
+    checkout.checarInfoEPlaceOrder();
 
     //14. Enter payment details: Name on Card, Card Number, CVC, Expiration date
 
-    pagamentoCartao.preencherCartao();
+    pagamento.preencherCartao();
   });
 });

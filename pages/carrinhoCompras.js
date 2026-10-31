@@ -1,4 +1,4 @@
-function visitarPaginaCarrinho(){
+function visitarcarrinhoDeCompras(){
     //9. Click 'view Cart' button
     cy.xpath('//*[@id="cartModal"]/div/div/div[2]/p[2]/a/u').click();
 
@@ -7,6 +7,6 @@ function visitarPaginaCarrinho(){
 }
 
 export default{
-    visitarPaginaCarrinho,
+    visitarcarrinhoDeCompras,
 
 };

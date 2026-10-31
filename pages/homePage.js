@@ -19,7 +19,7 @@ function logarUsuario(email, senha) {
   //8. Verify that 'Logged in as username' is visible
   cy.get("#header li a").contains("Logged in as").should("be.visible");
 }
-function logarUsuarioIncorreto(email, senha) {
+function logarhomePage(email, senha) {
   //6. Enter correct email address and password
   cy.get("[data-qa=login-email]").type(email);
   cy.get("[data-qa=login-password]").type(senha);
@@ -56,6 +56,6 @@ export default {
   logarUsuario,
   navegarLoginPage,
   logoutUsuario,
-  logarUsuarioIncorreto,
+  logarhomePage,
   validarHomePage,
 };
